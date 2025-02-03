@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="dark:bg-gray-900 bg-gray-50 transition-colors duration-300 dark:text-white">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-primary z-50 transform-gpu origin-left scale-x-0 transition-transform duration-200"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900/95 z-40 transform translate-x-full transition-transform duration-300">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 text-white text-xl">
+            <a href="#home" class="mobile-link hover:text-primary transition-colors">Home</a>
+            <a href="#work" class="mobile-link hover:text-primary transition-colors">Work</a>
+            <a href="#services" class="mobile-link hover:text-primary transition-colors">Services</a>
+            <a href="#about" class="mobile-link hover:text-primary transition-colors">About</a>
+            <a href="#contact" class="mobile-link hover:text-primary transition-colors">Contact</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full backdrop-blur-md bg-white/70 dark:bg-gray-900/70 z-30">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-2xl font-bold text-primary">Portfolio</a>
+                <div class="flex items-center gap-8">
+                    <div class="hidden lg:flex space-x-8">
+                        <a href="#home" class="nav-link relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Home</a>
+                        <a href="#work" class="nav-link relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Work</a>
+                        <a href="#services" class="nav-link relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Services</a>
+                        <a href="#about" class="nav-link relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">About</a>
+                        <a href="#contact" class="nav-link relative text-gray-700 dark:text-gray-300 hover:text-primary transition-colors">Contact</a>
+                    </div>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-moon dark:text-white"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="lg:hidden text-gray-600 dark:text-white">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating Social Media Bar -->
+    <div class="fixed left-6 top-1/2 transform -translate-y-1/2 hidden md:flex flex-col gap-4 z-20">
+        <a href="#" class="social-float-link" data-tooltip="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-float-link" data-tooltip="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="#" class="social-float-link" data-tooltip="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </div>
+
+    <!-- Hero Section with Particles Background -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+        <div id="particles-js" class="absolute inset-0"></div>
+        <div class="max-w-3xl text-center relative z-10">
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-7xl font-bold mb-6 dark:text-white">
+                    Creative <span class="gradient-text">Developer</span> & Designer
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+                    Crafting digital experiences with clean code and modern design
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#work" class="px-6 py-3 bg-primary text-white rounded-full hover:bg-indigo-600 transition duration-300">View Work</a>
+                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary dark:text-white rounded-full hover:bg-primary hover:text-white transition duration-300">Let's Talk</a>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-primary"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-100 dark:bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg dark:text-white" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-code text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Web Development</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Custom websites and web applications built with modern technologies.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg dark:text-white" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-mobile-alt text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Responsive Design</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Mobile-first designs that work on all devices.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg dark:text-white" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-search text-3xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">SEO Optimization</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Improve your website's search engine rankings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Skills & Expertise</h2>
+            <div class="grid md:grid-cols-2 gap-12 mt-12">
+                <!-- Skill Bars -->
+                <div class="space-y-6">
+                    <div class="skill-bar" data-aos="fade-right">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 dark:text-gray-300">HTML/CSS</span>
+                            <span class="text-primary">90%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar" data-aos="fade-right" data-aos-delay="100">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 dark:text-gray-300">JavaScript</span>
+                            <span class="text-primary">85%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar" data-aos="fade-right" data-aos-delay="200">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-700 dark:text-gray-300">React</span>
+                            <span class="text-primary">80%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                            <div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tech Stack -->
+                <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                        <i class="fab fa-react text-4xl text-primary mb-4"></i>
+                        <h3 class="text-lg font-semibold dark:text-white">React</h3>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                        <i class="fab fa-node-js text-4xl text-primary mb-4"></i>
+                        <h3 class="text-lg font-semibold dark:text-white">Node.js</h3>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                        <i class="fab fa-js text-4xl text-primary mb-4"></i>
+                        <h3 class="text-lg font-semibold dark:text-white">JavaScript</h3>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-xl text-center transition-transform duration-300 hover:-translate-y-2 shadow-lg">
+                        <i class="fab fa-html5 text-4xl text-primary mb-4"></i>
+                        <h3 class="text-lg font-semibold dark:text-white">HTML5/CSS3</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work Section -->
+    <section id="work" class="py-20 bg-gray-100 dark:bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Featured Work</h2>
+            <!-- Project Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- E-commerce Project -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up">
+                    <img src="https://via.placeholder.com/600x400" alt="E-commerce Project" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">Web Development</span>
+                        <h3 class="text-xl font-bold text-white mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-300 mb-4">Full-stack e-commerce solution with payment integration</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile App -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400" alt="Mobile App" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">App Development</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Fitness Tracker App</h3>
+                        <p class="text-gray-300 mb-4">React Native mobile app with health monitoring</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Design -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400" alt="Dashboard Design" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">UI/UX Design</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Analytics Dashboard</h3>
+                        <p class="text-gray-300 mb-4">Modern dashboard design with data visualization</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Website -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up">
+                    <img src="https://via.placeholder.com/600x400" alt="Portfolio Website" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">Web Design</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Creative Portfolio</h3>
+                        <p class="text-gray-300 mb-4">Responsive portfolio website with animations</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media App -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400" alt="Social Media App" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">Full Stack</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Social Platform</h3>
+                        <p class="text-gray-300 mb-4">Social media platform with real-time features</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather App -->
+                <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400" alt="Weather App" 
+                         class="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-sm text-primary bg-white/10 px-3 py-1 rounded-full w-fit mb-3">API Integration</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Weather Dashboard</h3>
+                        <p class="text-gray-300 mb-4">Real-time weather tracking with API integration</p>
+                        <div class="flex gap-3">
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="#" class="text-white hover:text-primary transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-gray-100 dark:bg-gray-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Client Testimonials</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial Card 1 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold dark:text-white">John Doe</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">CEO, Company Name</p>
+                        </div>
+                    </div>
+                    <div class="text-primary text-2xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 dark:text-gray-300">"Amazing work! The website exceeded my expectations. Very professional and responsive team."</p>
+                </div>
+
+                <!-- Testimonial Card 2 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold dark:text-white">Jane Smith</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Marketing Director</p>
+                        </div>
+                    </div>
+                    <div class="text-primary text-2xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 dark:text-gray-300">"Outstanding attention to detail and creative solutions. Highly recommended!"</p>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://via.placeholder.com/50" alt="Client" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold dark:text-white">Mike Johnson</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Startup Founder</p>
+                        </div>
+                    </div>
+                    <div class="text-primary text-2xl mb-4">★★★★★</div>
+                    <p class="text-gray-600 dark:text-gray-300">"Great communication and delivered the project ahead of schedule. Will work with again!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Latest Blog Posts</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Card 1 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 duration-300" data-aos="fade-up">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+                            Web Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <i class="far fa-calendar mr-2"></i>
+                            <span>March 15, 2024</span>
+                            <i class="far fa-clock ml-4 mr-2"></i>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
+                            <a href="#">Modern Web Development Best Practices</a>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn the latest best practices in web development and how to implement them in your projects.</p>
+                        <a href="#" class="inline-flex items-center text-primary hover:underline">
+                            Read More 
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 2 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+                            Design
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <i class="far fa-calendar mr-2"></i>
+                            <span>March 10, 2024</span>
+                            <i class="far fa-clock ml-4 mr-2"></i>
+                            <span>4 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
+                            <a href="#">UI/UX Design Trends in 2024</a>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Explore the latest trends in user interface and experience design for modern applications.</p>
+                        <a href="#" class="inline-flex items-center text-primary hover:underline">
+                            Read More 
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Blog Card 3 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <img src="https://via.placeholder.com/600x400" alt="Blog Post" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+                            Technology
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <i class="far fa-calendar mr-2"></i>
+                            <span>March 5, 2024</span>
+                            <i class="far fa-clock ml-4 mr-2"></i>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
+                            <a href="#">The Future of Web Technologies</a>
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Discover upcoming web technologies and how they will shape the future of development.</p>
+                        <a href="#" class="inline-flex items-center text-primary hover:underline">
+                            Read More 
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Fixed Form Styling -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12" data-aos="fade-up">Get in Touch</h2>
+            <div class="max-w-xl mx-auto">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="First Name" 
+                               class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white" required>
+                        <input type="text" placeholder="Last Name" 
+                               class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white" required>
+                    </div>
+                    <input type="email" placeholder="Email Address" 
+                           class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white" required>
+                    <textarea rows="5" placeholder="Your Message" 
+                              class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white resize-none" required></textarea>
+                    <button type="submit" 
+                            class="w-full px-6 py-3 bg-primary text-white rounded-lg hover:bg-indigo-600 transition duration-300 flex items-center justify-center">
+                        <span>Send Message</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t dark:border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-2xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-2xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-2xl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            <p class="text-gray-600 dark:text-gray-400">&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full hidden hover:bg-indigo-600 transition-colors">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
