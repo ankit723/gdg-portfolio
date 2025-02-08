@@ -3,24 +3,6 @@ AOS.init({
     duration: 1000,
     once: true
 });
-
-// Loading Screen
-window.addEventListener('load', () => {
-    const loadingScreen = document.getElementById('loading-screen');
-    loadingScreen.style.opacity = '0';
-    setTimeout(() => {
-        loadingScreen.style.display = 'none';
-    }, 500);
-});
-
-// Scroll Progress Bar
-window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('progress-bar').style.transform = `scaleX(${scrolled / 100})`;
-});
-
 // Mobile Menu
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -62,7 +44,7 @@ if (localStorage.getItem('theme') === 'light') {
 // Particles.js Configuration
 particlesJS('particles-js', {
     particles: {
-        number: { value: 80 },
+        number: { value: 200 },
         color: { value: '#6366f1' },
         shape: { type: 'circle' },
         opacity: {
@@ -123,34 +105,6 @@ backToTop.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-});
-
-// Form Submission
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const submitText = submitBtn.querySelector('.submit-text');
-    const loadingSpinner = submitBtn.querySelector('.loading-spinner');
-    
-    // Show loading state
-    submitText.style.display = 'none';
-    loadingSpinner.classList.remove('hidden');
-    
-    try {
-        // Simulate form submission delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Show success message
-        alert('Message sent successfully!');
-        this.reset();
-    } catch (error) {
-        alert('An error occurred. Please try again.');
-    } finally {
-        // Reset button state
-        submitText.style.display = 'inline';
-        loadingSpinner.classList.add('hidden');
-    }
 });
 
 // Intersection Observer for animations
